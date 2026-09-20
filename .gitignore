@@ -1,0 +1,16 @@
+# built apps - attach these to a release instead of committing them
+Opmize.exe
+dist/
+build/
+*.spec
+*.icns
+# local state
+settings.json
+errors.log
+crash.log
+smoke_out/
+# environments
+.venv/
+.venv-mac/
+__pycache__/
+*.pyc

@@ -1,0 +1,7 @@
+numpy>=1.22
+Pillow>=9.0
+tifffile>=2022.5.4
+tkinterdnd2>=0.3.0
+pillow-heif>=0.13.0 ; platform_system != "Linux"
+# optional: only used to read 16-bit PNG at full depth
+# opencv-python
