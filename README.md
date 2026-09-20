@@ -9,15 +9,17 @@ Nothing is ever cropped, nothing is enlarged, and the originals are never touche
     <img alt="Download Opmize for Windows"
          src="https://img.shields.io/badge/download-Opmize.exe-E7DBF0?style=for-the-badge&labelColor=16171E&color=4F4756&logo=windows&logoColor=E7DBF0"></a>
   &nbsp;
-  <a href="https://github.com/magholmes/Opmize/releases/latest">
+  <a href="https://github.com/magholmes/Opmize/releases/latest/download/Opmize.mac.arm64.zip">
     <img alt="Download Opmize for macOS"
          src="https://img.shields.io/badge/download-Opmize.app-A798B3?style=for-the-badge&labelColor=16171E&color=342E38&logo=apple&logoColor=E7DBF0"></a>
 </p>
 
-One file, nothing to install — drop photos straight onto it, or open it and drop them in the
-window. The first run may show SmartScreen's "Windows protected your PC", or on a Mac the
-"unidentified developer" warning, because neither build is signed: **More info → Run anyway**, or
-right-click the app and choose **Open**.
+Nothing to install. On Windows it is one file — drop photos straight onto the icon, or open it and
+drop them in the window. The macOS download is `Opmize.app` for Apple silicon, built on a macOS
+runner by the workflow in `.github/workflows`.
+
+Neither build is signed, so the first run shows a warning: on Windows **More info → Run anyway**,
+on macOS right-click the app and choose **Open**.
 
 ![Opmize](docs/window.png)
 
