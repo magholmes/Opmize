@@ -7,11 +7,11 @@ Nothing is ever cropped, nothing is enlarged, and the originals are never touche
 <p>
   <a href="https://github.com/magholmes/Opmize/releases/latest/download/Opmize.exe">
     <img alt="Download Opmize for Windows"
-         src="https://img.shields.io/badge/download-Opmize.exe-E7DBF0?style=for-the-badge&labelColor=16171E&color=4F4756&logo=windows&logoColor=E7DBF0"></a>
+         src="https://img.shields.io/badge/download-Opmize.exe-5E6DEE?style=for-the-badge&labelColor=16171E&color=5E6DEE&logo=windows&logoColor=white"></a>
   &nbsp;
   <a href="https://github.com/magholmes/Opmize/releases/latest/download/Opmize.mac.arm64.zip">
     <img alt="Download Opmize for macOS"
-         src="https://img.shields.io/badge/download-Opmize.app-A798B3?style=for-the-badge&labelColor=16171E&color=342E38&logo=apple&logoColor=E7DBF0"></a>
+         src="https://img.shields.io/badge/download-Opmize.app-5E6DEE?style=for-the-badge&labelColor=16171E&color=5E6DEE&logo=apple&logoColor=white"></a>
 </p>
 
 Nothing to install. On Windows it is one file — drop photos straight onto the icon, or open it and
