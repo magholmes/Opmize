@@ -26,7 +26,10 @@ python -m PyInstaller --noconfirm --clean --onefile --windowed `
 
 Write-Host "`n== batch-mode check inside the built exe" -ForegroundColor Cyan
 New-Item -ItemType Directory -Force dist\check | Out-Null
-& "$root\dist\Opmize.exe" --cli "$root\dist\check" "$root\smoke_out\portrait_4x5_16bit.tif"
+# A --windowed build is a GUI-subsystem binary, so "&" returns immediately; wait for it or the
+# check below races the exe and reads a report that has not been written yet.
+Start-Process -FilePath "$root\dist\Opmize.exe" -Wait -ArgumentList @(
+  "--cli", "$root\dist\check", "$root\smoke_out\portrait_4x5_16bit.tif")
 python -c "import json;r=json.load(open(r'$root\dist\check\cli_report.json'));assert r['frozen'] and not r['errors'] and r['results'], r;print('   exe processed', r['results'][0]['in_size'], '->', r['results'][0]['out_size'])"
 
 Write-Host "`nBuilt dist\Opmize.exe" -ForegroundColor Green

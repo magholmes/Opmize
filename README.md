@@ -4,6 +4,21 @@ Drop photos in, get Instagram-ready JPEGs out. One drop, done.
 
 Nothing is ever cropped, nothing is enlarged, and the originals are never touched.
 
+<p>
+  <a href="https://github.com/magholmes/Opmize/releases/latest/download/Opmize.exe">
+    <img alt="Download Opmize for Windows"
+         src="https://img.shields.io/badge/download-Opmize.exe-E7DBF0?style=for-the-badge&labelColor=16171E&color=4F4756&logo=windows&logoColor=E7DBF0"></a>
+  &nbsp;
+  <a href="https://github.com/magholmes/Opmize/releases/latest">
+    <img alt="Download Opmize for macOS"
+         src="https://img.shields.io/badge/download-Opmize.app-A798B3?style=for-the-badge&labelColor=16171E&color=342E38&logo=apple&logoColor=E7DBF0"></a>
+</p>
+
+One file, nothing to install — drop photos straight onto it, or open it and drop them in the
+window. The first run may show SmartScreen's "Windows protected your PC", or on a Mac the
+"unidentified developer" warning, because neither build is signed: **More info → Run anyway**, or
+right-click the app and choose **Open**.
+
 ![Opmize](docs/window.png)
 
 ## What every photo gets
@@ -21,10 +36,10 @@ Photos taller than 3:4 or wider than 1.91:1 are still exported whole; Instagram 
 
 Any size works. A 300-megapixel scan is read in bands and box-reduced on the way in, so it never needs gigabytes of RAM. Uncompressed TIFFs are memory-mapped straight from disk, and huge JPEGs are downscaled inside the decoder first.
 
-## Install
+## Running from source
 
 ```bash
-git clone https://github.com/magnusholmes-cmyk/Opmize.git
+git clone https://github.com/magholmes/Opmize.git
 cd Opmize
 python -m pip install -r requirements.txt
 ```
@@ -72,7 +87,7 @@ If Windows shows "Windows protected your PC" the first time someone opens the `.
 
 Are.na's "Dusk" theme — its purple-tinted grey ladder, taken from are.na's own theme table — with the layout language of the magnus archive site: hairlines, Geist and Geist Mono, lowercase mono labels and pill controls, in a frameless window with rounded corners. Rounding needs Windows 11; on Windows 10 the corners stay square.
 
-The same design language, with switchable palettes, is in [MagCopy](https://github.com/magnusholmes-cmyk/MagCopy).
+The same design language, with switchable palettes, is in [MagCopy](https://github.com/magholmes/MagCopy).
 
 ## Where things are kept
 

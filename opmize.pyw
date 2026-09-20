@@ -27,7 +27,7 @@ try:
 except ImportError:
     MISSING.append("numpy")
 try:
-    from PIL import Image, ImageCms, ImageOps
+    from PIL import Image, ImageCms, ImageFile, ImageOps
     Image.MAX_IMAGE_PIXELS = None
 except ImportError:
     MISSING.append("Pillow")
@@ -557,8 +557,16 @@ def process_file(path, settings, srgb_icc, progress=None):
     os.makedirs(out_dir, exist_ok=True)
     base = os.path.splitext(os.path.basename(path))[0]
     out_path = unique_path(os.path.join(out_dir, "%s_ig%d.jpg" % (base, a8.shape[1])), settings.get("overwrite", False))
-    Image.fromarray(a8, "RGB").save(out_path, "JPEG", quality=int(settings.get("quality", QUALITY)), subsampling=0, optimize=True,
-                                    progressive=False, icc_profile=srgb_icc, dpi=(72, 72))
+    # optimize=True makes libjpeg build the whole scan in one buffer; PIL's default block is too
+    # small for a very busy 2160 px frame and the save dies with "broken data stream". Raising the
+    # block for this save is the documented remedy; falling back without optimize is the backstop.
+    ImageFile.MAXBLOCK = max(getattr(ImageFile, "MAXBLOCK", 65536), a8.shape[0] * a8.shape[1] * 4)
+    try:
+        Image.fromarray(a8, "RGB").save(out_path, "JPEG", quality=int(settings.get("quality", QUALITY)), subsampling=0, optimize=True,
+                                        progressive=False, icc_profile=srgb_icc, dpi=(72, 72))
+    except OSError:
+        Image.fromarray(a8, "RGB").save(out_path, "JPEG", quality=int(settings.get("quality", QUALITY)), subsampling=0, optimize=False,
+                                        progressive=False, icc_profile=srgb_icc, dpi=(72, 72))
     return dict(source=path, output=out_path, in_size=(W0, H0), out_size=(a8.shape[1], a8.shape[0]), notes=notes,
                 bytes=os.path.getsize(out_path), seconds=time.time() - t0, inside=p["inside"])
 
