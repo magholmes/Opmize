@@ -1,6 +1,6 @@
 """Platform-neutral checks for Opmize (Windows or macOS): pipeline geometry, colour handling, big-file streaming,
 and the window with a simulated drop. Run:  python smoke_test.py   (exit code 1 on any failure)."""
-import importlib.util, os, io, sys, time
+import importlib.machinery, importlib.util, os, io, sys, time
 import numpy as np
 from PIL import Image, ImageCms, JpegImagePlugin
 import tifffile
@@ -8,7 +8,11 @@ import tifffile
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "smoke_out")
 os.makedirs(OUT, exist_ok=True)
-spec = importlib.util.spec_from_file_location("igo", os.path.join(HERE, "opmize.pyw"))
+# ".pyw" is only a recognised source suffix on Windows, so spec_from_file_location returns None
+# on macOS unless the loader is named explicitly. Without this the Mac build fails before it starts.
+_APP = os.path.join(HERE, "opmize.pyw")
+spec = importlib.util.spec_from_file_location(
+    "igo", _APP, loader=importlib.machinery.SourceFileLoader("igo", _APP))
 igo = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(igo)
 print("platform:", sys.platform, "| Tk:", igo.tk.TkVersion, "| drag-and-drop lib:", igo.HAVE_DND, "| tifffile:", bool(igo.tifffile))
